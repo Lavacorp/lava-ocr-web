@@ -1,0 +1,8 @@
+streamlit
+pandas
+opencv-python
+numpy
+python-dotenv
+openai
+rapidocr-onnxruntime
+dropbox
