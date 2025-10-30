@@ -3,7 +3,15 @@
 import os, io, json
 import streamlit as st
 import pandas as pd
-from dotenv import load_dotenv
+# 삭제 from dotenv import load_dotenv
+
+# ✅ Streamlit Cloud Secrets 사용
+OPENAI_KEY = st.secrets.get("OPENAI_API_KEY", "")
+DROPBOX_TOKEN = st.secrets.get("DROPBOX_TOKEN", "")
+DROPBOX_FOLDER = st.secrets.get("DROPBOX_FOLDER", "/work/LAVA의 팀 폴더/라바상사/CON_PHOTO")
+
+if OPENAI_KEY:
+    os.environ["OPENAI_API_KEY"] = OPENAI_KEY  # local_ocr_agent.py에서도 사용
 
 # ====== local_ocr_agent 모듈에서 핵심 함수/상수 가져오기 ======
 from local_ocr_agent import (
@@ -140,13 +148,10 @@ download_excel = st.sidebar.checkbox("Enable Excel download", value=True)
 # Dropbox 옵션
 st.sidebar.markdown("---")
 st.sidebar.subheader("📦 Dropbox 옵션")
-use_dropbox_ui = st.sidebar.checkbox("Dropbox에서 바로 불러오기", value=False)
-dbx_token      = st.sidebar.text_input("DROPBOX_TOKEN", type="password",
-                                       value=os.getenv("DROPBOX_TOKEN",""))
-dbx_folder     = st.sidebar.text_input(
-    "DROPBOX_FOLDER",
-    value=os.getenv("DROPBOX_FOLDER", "/work/LAVA의 팀 폴더/라바상사/CON_PHOTO")
-)
+use_dropbox_ui = st.sidebar.checkbox("Dropbox에서 바로 불러오기", value=True)
+dbx_token  = st.sidebar.text_input("DROPBOX_TOKEN", type="password", value=DROPBOX_TOKEN)
+dbx_folder = st.sidebar.text_input("DROPBOX_FOLDER", value=DROPBOX_FOLDER)
+
 
 # API 키 즉시 반영 (local_ocr_agent 내부에서 os.environ 읽음)
 if api_key_in:

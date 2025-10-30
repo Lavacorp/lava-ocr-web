@@ -3,7 +3,7 @@
 
 import os, time, json, base64, mimetypes, re, cv2, numpy as np
 import pandas as pd
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 from openai import OpenAI
 from typing import Dict, Tuple, Optional
 
