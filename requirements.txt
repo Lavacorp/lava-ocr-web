@@ -1,0 +1,15 @@
+streamlit>=1.38
+openai>=1.40.0
+
+# OCR core
+opencv-python-headless==4.8.1.78
+numpy==1.26.4
+rapidocr-onnxruntime==1.3.18
+onnxruntime==1.16.3
+pandas==2.2.2
+openpyxl==3.1.2
+Pillow==10.2.0
+
+# integrations
+dropbox==11.36.2
+python-dotenv==1.0.1
